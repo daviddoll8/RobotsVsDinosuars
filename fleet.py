@@ -11,7 +11,6 @@ class Fleet:
       robot = Robot(names[i-1])
       robot.select_weapon()
       self.robots.append(robot)
-    
       i += 1
 
   def get_fleet_health_pool(self):

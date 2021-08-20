@@ -14,8 +14,8 @@ class Robot:
       dinosaur.health -= self.weapon.attack_power
       if(dinosaur.health < 0):
         dinosaur.health = 0
-      print(dinosaur.name + " the dinosuar was successfully attacked by " + self.name + 
-        " the robot and now has " + str(dinosaur.health) + " health")
+      print(self.name + " the robot succesfully attacked " + dinosaur.name + " with their " + self.weapon.name +
+        ". " + dinosaur.name + " now has " + str(dinosaur.health) + " health")
       if(dinosaur.health <= 0):
         print(dinosaur.name + " the dinosaur has died on the battlefield from the attack by " + self.name + " the robot")
   
