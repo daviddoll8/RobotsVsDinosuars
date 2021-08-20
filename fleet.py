@@ -11,4 +11,10 @@ class Fleet:
       self.robots.append(Robot(names[i - 1]))
       i += 1
 
+  def get_fleet_health_pool(self):
+    total_health_pool = 0
+    for robot in self.robots:
+      total_health_pool += robot.health
+    return total_health_pool
+
     
