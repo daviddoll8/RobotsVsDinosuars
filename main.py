@@ -8,9 +8,3 @@ from battlefield import Battlefield
 if __name__ == "__main__":
   battlefield = Battlefield()
   battlefield.run_game()
-  #fleet = Fleet()
-  #fleet.create_fleet()1
-  #robot = Robot("Brutus")1
-  #dinosaur = Dinosau111
-  # r("Chad", 115)
-  #robot.attack(dinosaur)

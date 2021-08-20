@@ -97,8 +97,8 @@ class Battlefield:
       i += 1
 
   def display_winners(self):
-    if(self.herd.get_herd_health_pool == 0):
-      print("\nThe robots are the winners\nRobots:\n")
+    if(self.herd.get_herd_health_pool() == 0):
+      print("\nThe robots are the winners\n")
       self.show_dino_opponent_options()
     else:
       print("\nThe dinosaurs are the winners\n")

@@ -8,7 +8,10 @@ class Fleet:
     i = 1
     names = ["Brutus", "Malachai", "Doedre"]
     while i <= 3:
-      self.robots.append(Robot(names[i - 1]))
+      robot = Robot(names[i-1])
+      robot.select_weapon()
+      self.robots.append(robot)
+    
       i += 1
 
   def get_fleet_health_pool(self):
