@@ -39,6 +39,9 @@ class Battlefield:
 
         for robot in self.fleet.robots:
           self.robo_turn(robot)
+        
+        if(self.herd.get_herd_health_pool() <= 0): #break early if the dinousaurs were all killed on the robots turn
+          break
     else: #robots attack first
       while self.fleet.get_fleet_health_pool() > 0 or self.herd.get_herd_health_pool() > 0:
         for robot in self.fleet.robots:
@@ -49,6 +52,9 @@ class Battlefield:
         
         for dinosaur in self.herd.dinosaurs:
           self.dino_turn(dinosaur)
+        
+        if(self.fleet.get_fleet_health_pool() <= 0): #break early if the robots were all killed on the dinosaurs turn
+          break
   
   def dino_turn(self, dinosaur):
     print(dinosaur.name + "'s turn to attack. Attack power is " + str(dinosaur.attack_power) + " and health is " + str(dinosaur.health))
