@@ -14,4 +14,4 @@ class Dinosaur:
         " the dinosaur and now has " + str(robot.health) + " health")
       if(robot.health <= 0):
         robot.health = 0
-        print(robot.name + " the robot has died from the attack by " + self.name + " the dinosaur")
+        print(robot.name + " the robot has died on the battlefield from the attack by " + self.name + " the dinosaur")

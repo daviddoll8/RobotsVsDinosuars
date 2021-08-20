@@ -12,6 +12,7 @@ class Battlefield:
     self.herd.create_herd()
     self.display_welcome()
     self.battle()
+    self.display_winners()
 
   def display_welcome(self):
     print("Welcome to Robots vs Dinosaurs\n")
@@ -28,13 +29,32 @@ class Battlefield:
         continue
 
   def battle(self):
-    if(self.attack_first == 1): #dinosaurs attack first
+    if(self.attack_first == 1): #dinosaurs attack first   
       while self.fleet.get_fleet_health_pool() > 0 or self.herd.get_herd_health_pool() > 0:
         for dinosaur in self.herd.dinosaurs:
           self.dino_turn(dinosaur)
+        
+        if(self.fleet.get_fleet_health_pool() <= 0): #break early if the robots were all killed on the dinosaurs turn
+          break
+
+        for robot in self.fleet.robots:
+          self.robo_turn(robot)
+
+        if(self.herd.get_herd_health_pool() <= 0): #break early if the dinousaurs were all killed on the robots turn
+          break
     else: #robots attack first
       while self.fleet.get_fleet_health_pool() > 0 or self.herd.get_herd_health_pool() > 0:
-        print("here")
+        for robot in self.fleet.robots:
+          self.robo_turn(robot)
+
+        if(self.herd.get_herd_health_pool() <= 0): #break early if the dinousaurs were all killed on the robots turn
+          break
+        
+        for dinosaur in self.herd.dinosaurs:
+          self.dino_turn(dinosaur)
+        
+        if(self.fleet.get_fleet_health_pool() <= 0): #break early if the robots were all killed on the dinosaurs turn
+          break
   
   def dino_turn(self, dinosaur):
     print(dinosaur.name + "'s turn to attack. Attack power is " + str(dinosaur.attack_power) + " and health is " + str(dinosaur.health))
@@ -53,9 +73,22 @@ class Battlefield:
 
     dinosaur.attack(self.fleet.robots[robot_to_attack-1])
     
-      
   def robo_turn(self, robot):
-    pass
+    print(robot.name + "'s turn to attack. Attack power is " + str(robot.weapon.attack_power) + " and health is " + str(robot.health))
+    self.show_robo_opponent_options()
+
+    while True:
+      try:
+        dinosaur_to_attack = int(input("Please enter the number of the dinosaur that you would like to attack"))
+      except ValueError:
+        print("Please enter a valid number for which dinosaur to attack from the above list.")
+        continue
+      if(dinosaur_to_attack >= 1 and dinosaur_to_attack <= len(self.herd.dinosaurs)):
+        break
+      else:
+        print("Please enter a valid number for which robot to attack from the above list.")
+
+    robot.attack(self.herd.dinosaurs[dinosaur_to_attack-1])
 
   def show_dino_opponent_options(self):
     i = 1
@@ -64,7 +97,10 @@ class Battlefield:
       i += 1
 
   def show_robo_opponent_options(self):
-    pass
+    i = 1
+    for dinosaur in self.herd.dinosaurs:
+      print(str(i) + ". Dinosaur name: " + dinosaur.name + " health: " + str(dinosaur.health) + " attack power: " + str(dinosaur.attack_power))
+      i += 1
 
   def display_winners(self):
     pass
